@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sobre | ISOLUTIONCELL Assistência Técnica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conheça a ISOLUTIONCELL Assistência Técnica: tradição, inovação, excelência e as melhores avaliações em conserto de celulares.">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1048/1048953.png"/>
+  <style>
+    :root {
+      --primary: #1976d2;
+      --primary-dark: #0d47a1;
+      --secondary: #2196f3;
+      --accent: #25d366;
+      --bg-light: #f4f8fc;
+      --bg-section: #ffffff;
+      --text: #222;
+      --text-soft: #555;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+      background: linear-gradient(110deg, var(--secondary) 0%, var(--primary-dark) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      letter-spacing: 0.02em;
+      font-size: 17px;
+    }
+    .navbar {
+      background: #fff;
+      box-shadow: 0 3px 18px #1976d223;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      height: 68px;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .navbar-logo img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #f4f8fc;
+      box-shadow: 0 1px 7px #2196f322;
+    }
+    .navbar-logo span {
+      color: var(--primary-dark);
+      font-size: 1.36rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .navbar-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .navbar-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color .15s;
+    }
+    .navbar-links a:hover {
+      color: var(--primary-dark);
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(110deg, #e3f2fd 60%, #f4f8fc 100%);
+      box-shadow: 0 6px 28px #1976d230;
+      border-radius: 0 0 40px 40px;
+      padding: 62px 18px 46px 18px;
+      margin-bottom: 0;
+    }
+    .hero-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      text-align: center;
+      letter-spacing: 1.3px;
+      text-shadow: 0 3px 13px #1976d215;
+    }
+    .hero-sub {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin-bottom: 15px;
+      text-align: center;
+      max-width: 520px;
+    }
+    .hero-highlight {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 7px;
+      margin-top: 8px;
+      font-size: 1.06em;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .cta-btn {
+      display: inline-block;
+      margin-top: 30px;
+      background: linear-gradient(90deg, var(--secondary) 70%, var(--primary-dark) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 54px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 1px 12px #2196f322;
+      transition: background .18s, transform .10s;
+      text-decoration: none;
+      outline: none;
+      letter-spacing: .8px;
+    }
+    .cta-btn:active { transform: scale(.97);}
+    .cta-btn:hover { background: var(--primary); }
+
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--bg-section);
+      border-radius: 23px;
+      box-shadow: 0 2px 18px #1976d212;
+      padding: 44px 35px 35px 35px;
+      margin-top: 36px;
+    }
+    .section-title {
+      color: var(--primary);
+      font-size: 1.44rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 23px;
+      letter-spacing: .7px;
+    }
+    .about-section-text {
+      font-size: 1.08rem;
+      color: var(--text-soft);
+      line-height: 1.75;
+      margin: 0 auto 16px auto;
+      max-width: 730px;
+      text-align: center;
+    }
+
+    .features {
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 22px;
+      margin-bottom: 12px;
+    }
+    .feature-card {
+      background: #f4f8fc;
+      border-radius: 15px;
+      box-shadow: 0 1px 8px #1976d213;
+      padding: 24px 17px 20px 17px;
+      width: 265px;
+      min-width: 190px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 18px;
+      text-align: center;
+      border: 1px solid #e3f2fd;
+    }
+    .feature-card img {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 9px;
+    }
+    .feature-card strong {
+      color: var(--primary);
+      font-size: 1.13rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: block;
+      letter-spacing: .2px;
+    }
+
+    .avaliacoes-title {
+      color: var(--primary);
+      text-align: center;
+      font-size: 1.18rem;
+      margin: 38px 0 8px 0;
+      font-weight: 700;
+      letter-spacing: .3px;
+    }
+    .avaliacoes {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 18px;
+    }
+    .avaliacao {
+      background: #f4f8fc;
+      border-radius: 13px;
+      box-shadow: 0 2px 6px #1976d211;
+      border-left: 7px solid var(--accent);
+      padding: 19px 15px 15px 15px;
+      width: 260px;
+      min-width: 160px;
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+      font-size: 1.03rem;
+      transition: box-shadow .13s;
+    }
+    .avaliacao:hover { box-shadow: 0 4px 20px #25d36633;}
+    .avaliacao .star {
+      color: #ffc107;
+      font-size: 1.13rem;
+      margin-right: 2px;
+    }
+    .avaliacao .cliente {
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 7px;
+      font-size: .97rem;
+    }
+    .avaliacao .verificado {
+      color: var(--accent);
+      font-size: 1.13rem;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .avaliacao .data {
+      font-size: .94rem;
+      color: #999;
+      margin-left: 7px;
+    }
+
+    .valores {
+      display: flex;
+      gap: 26px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 36px 0 18px 0;
+    }
+    .valor-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 1px 8px #1976d212;
+      padding: 19px 19px 14px 19px;
+      min-width: 180px;
+      max-width: 270px;
+      text-align: center;
+      margin-bottom: 12px;
+      border: 1.5px solid #e3f2fd;
+    }
+    .valor-card strong {
+      color: var(--primary-dark);
+      font-size: 1.07rem;
+      font-weight: 700;
+    }
+    .valor-card span {
+      color: var(--primary);
+      font-size: .95rem;
+      display: block;
+      margin-top: 5px;
+    }
+    .footer {
+      text-align: center;
+      color: #f3f9ff;
+      border-top: 1.5px solid #1976d244;
+      padding: 22px 0 17px 0;
+      font-size: 1.04rem;
+      margin-top: 38px;
+      background: rgba(13,71,161,0.14);
+    }
+    @media (max-width: 900px) {
+      .section { padding: 38px 4vw 21px 4vw;}
+      .features, .valores, .avaliacoes { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 600px) {
+      .navbar {padding:0 10px;}
+      .hero {padding: 40px 6vw 33px 6vw;}
+      .section {padding: 26px 2vw 8px 2vw;}
+      .hero-title {font-size: 1.2rem;}
+      .header-logo {width:62px;height:62px;}
+      .cta-btn {padding: 13px 0;width:96%;}
+      .feature-card {width: 100%;}
+      .avaliacao {width: 99vw;min-width: 0;}
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation">
+    <a href="#" class="navbar-logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Logo ISOLUTIONCELL">
+      <span>ISOLUTIONCELL</span>
+    </a>
+    <div class="navbar-links">
+      <a href="#">Sobre</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#valores">Valores</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-title">ISOLUTIONCELL Assistência Técnica</div>
+    <div class="hero-sub">
+      Referência em <b>conserto de celulares</b> com qualidade, inovação e confiança.<br>
+      Soluções rápidas, transparentes e com garantia, para você voltar a se conectar sem preocupações!
+      <div class="hero-highlight">+5.000 clientes atendidos</div>
+    </div>
+    <a href="C:\Users\kenedy\Desktop\aviator test\.venv\assistec.html" class="cta-btn">Pedir Orçamento</a>
+  </div>
+
+  <div class="section" id="diferenciais">
+    <div class="section-title">Nossos Diferenciais</div>
+    <div class="about-section-text">
+      Mais do que consertos, entregamos <b>tranquilidade</b> e <b>segurança</b> para nossos clientes.<br>
+      Veja o que nos torna uma das assistências mais bem avaliadas da região:
+    </div>
+    <div class="features">
+      <div class="feature-card">
+        <img src="https://cdn-icons-png.flaticon.com/128/2972/2972306.png" alt="Equipe Especializada">
+        <strong>Equipe Especializada</strong>
+        Técnicos certificados, atualizados e apaixonados por tecnologia.
+      </div>
+      <div class="feature-card">
+        <img src="https://cdn-icons-png.flaticon.com/128/190/190411.png" alt="Peças Originais">
+        <strong>Peças de Qualidade</strong>
+        Só trabalhamos com peças de procedência e garantia.
+      </div>
+      <div class="feature-card">
+        <img src="https://cdn-icons-png.flaticon.com/128/3106/3106773.png" alt="Atendimento Rápido">
+        <strong>Atendimento Ágil</strong>
+        Resposta pelo WhatsApp em minutos e orçamento sem compromisso.
+      </div>
+      <div class="feature-card">
+        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828640.png" alt="Garantia Real">
+        <strong>Garantia Real</strong>
+        Garantia em todos os serviços realizados, para sua total confiança.
+      </div>
+      <div class="feature-card">
+        <img src="https://cdn-icons-png.flaticon.com/128/2721/2721044.png" alt="Transparência Total">
+        <strong>Transparência Total</strong>
+        Diagnóstico claro, preço justo e sem surpresas na retirada.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="avaliacoes">
+    <div class="section-title avaliacoes-title">Avaliações de Clientes</div>
+    <div class="about-section-text">
+      <b>98% de aprovação!</b> Confira o que nossos clientes dizem sobre a ISOLUTIONCELL:
+    </div>
+    <div class="avaliacoes">
+      <div class="avaliacao">
+        <span>
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </span>
+        <div>Troca de tela feita em menos de 2 horas! Recomendo demais.</div>
+        <div class="cliente">Mariana Silva <span class="verificado">✔</span> <span class="data">Set/2025</span></div>
+      </div>
+      <div class="avaliacao">
+        <span>
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </span>
+        <div>Ótimo atendimento, tiraram todas minhas dúvidas e o preço foi justo.</div>
+        <div class="cliente">Carlos Souza <span class="verificado">✔</span> <span class="data">Ago/2025</span></div>
+      </div>
+      <div class="avaliacao">
+        <span>
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </span>
+        <div>Meu Xiaomi voltou a funcionar perfeitamente. Muito obrigado!</div>
+        <div class="cliente">Fernanda Lima <span class="verificado">✔</span> <span class="data">Jul/2025</span></div>
+      </div>
+      <div class="avaliacao">
+        <span>
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </span>
+        <div>Serviço rápido, seguro e com garantia. Voltarei sempre que precisar!</div>
+        <div class="cliente">Gabriel Torres <span class="verificado">✔</span> <span class="data">Jun/2025</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="valores">
+    <div class="section-title">Nossos Valores</div>
+    <div class="about-section-text">
+       Acreditamos que o <b>cliente</b> vem sempre em primeiro lugar.<br>
+       Ética, responsabilidade e paixão por tecnologia são os pilares do nosso atendimento!
+    </div>
+    <div class="valores">
+      <div class="valor-card">
+        <strong>Atendimento humano e personalizado</strong>
+        <span>Escutamos você e buscamos a melhor solução para cada caso.</span>
+      </div>
+      <div class="valor-card">
+        <strong>Respeito e honestidade</strong>
+        <span>Diagnóstico claro e preço justo, sempre.</span>
+      </div>
+      <div class="valor-card">
+        <strong>Garantia de serviço</strong>
+        <span>Compromisso com a sua satisfação e segurança.</span>
+      </div>
+      <div class="valor-card">
+        <strong>Inovação sempre</strong>
+        <span>Atualização constante para cuidar dos lançamentos do mercado.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 ISOLUTIONCELL Assistência Técnica<br>
+    <span style="font-size:.97em;color:#bbdefb;">Seu celular em boas mãos.</span>
+  </div>
+</body>
+</html>

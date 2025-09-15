@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>ISOLUTIONCELL ASSISTÊNCIA TÉCNICA - ChatBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1048/1048953.png"/>
+  <style>
+    body {
+      margin:0; padding:0;
+      background: linear-gradient(120deg,#2196f3 0%,#0d47a1 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .chatbot-cel-icon {
+      position: fixed;
+      z-index: 1;
+      opacity: 0.13;
+      pointer-events: none;
+      animation: float-cel 10s ease-in-out infinite alternate;
+    }
+    .chatbot-cel-icon.icon1 { width: 90px; left: 7vw; top: 2vh; transform: rotate(-10deg); animation-delay: 0s;}
+    .chatbot-cel-icon.icon2 { width: 65px; right: 8vw; top: 6vh; transform: rotate(12deg); animation-delay: 1.5s;}
+    .chatbot-cel-icon.icon3 { width: 60px; right: 2vw; bottom: 10vh; transform: rotate(-9deg); animation-delay: 5s;}
+    .chatbot-cel-icon.icon4 { width: 55px; left: 5vw; bottom: 8vh; transform: rotate(7deg); animation-delay: 3.5s;}
+    .chatbot-cel-icon.icon5 { width: 42px; left: 48vw; top: 1vh; transform: rotate(-18deg); animation-delay: .7s;}
+    @keyframes float-cel {
+      0% { filter: drop-shadow(0 0 0 #1565c0);}
+      100% { transform: translateY(-20px) scale(1.05) rotate(15deg); filter: drop-shadow(0 7px 18px #1565c055);}
+    }
+    .chatbot-container {
+      background:#f3f9ff;
+      border-radius:20px;
+      box-shadow:0 7px 32px #1976d221;
+      width:370px; max-width:98vw;
+      min-height:560px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:0;
+      position:relative;
+      z-index:5;
+      transition: box-shadow .25s;
+      animation: popInChat .65s;
+    }
+    @keyframes popInChat {
+      0% { transform: scale(.92); opacity:.7;}
+      100% { transform: scale(1); opacity:1;}
+    }
+    .chatbot-header {
+      background:linear-gradient(90deg,#2196f3 70%,#0d47a1 100%);
+      color:#fff;
+      border-radius:20px 20px 0 0;
+      padding:22px 19px 12px 19px;
+      font-size:1.13rem;
+      font-weight:700;
+      letter-spacing:.8px;
+      display:flex;align-items:center;gap:13px;
+      box-shadow: 0 2px 14px #2196f344;
+      text-shadow: 0 2px 8px #0d47a122;
+    }
+    .chatbot-header img {
+      width:40px;height:40px;border-radius:50%;background:#f3f9ff;padding:4px;
+      box-shadow:0 2px 7px #2196f322;
+    }
+    .chatbot-messages {
+      flex:1;
+      overflow-y:auto;
+      padding:18px 16px 7px 16px;
+      background: #f3f9ff;
+      font-size:1.04rem;
+      display:flex;flex-direction:column;gap:14px;
+      min-height:220px;
+      max-height:410px;
+      scrollbar-width:thin;
+      scroll-behavior:smooth;
+    }
+    .msg-bot, .msg-user {
+      max-width:85%;
+      padding:11px 14px;
+      border-radius:13px;
+      margin-bottom:1px;
+      display:inline-block;
+      word-break:break-word;
+      box-shadow:0 1px 5px #2196f310;
+      position:relative;
+      font-size:1.05rem;
+      animation: fadeMsg .5s;
+    }
+    @keyframes fadeMsg {
+      from { opacity:0; transform: translateY(20px);}
+      to   { opacity:1; transform: translateY(0);}
+    }
+    .msg-bot {
+      background: #e3f2fd;
+      color: #0d47a1;
+      align-self:flex-start;
+      border-bottom-left-radius:3px;
+      margin-right:auto;
+    }
+    .msg-user {
+      background: #1976d2;
+      color:#fff;
+      align-self:flex-end;
+      border-bottom-right-radius:3px;
+      margin-left:auto;
+      font-weight:600;
+    }
+    .escassez-msg {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 2.8vh;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #e3f2fd;
+      color: #0d47a1;
+      font-weight: 600;
+      font-size: 1.01rem;
+      border-radius: 9px;
+      box-shadow: 0 2px 14px #2196f322;
+      padding: 10px 13px 10px 12px;
+      margin: 0 auto 14px auto;
+      width: fit-content;
+      animation: fadeIn .7s;
+      z-index: 100;
+      border: 1.5px solid #1976d2;
+      min-width: 210px;
+      justify-content: center;
+    }
+    .escassez-msg .cel-icon {
+      width: 23px; height: 23px;
+      margin-right: 4px;
+      filter: drop-shadow(0 1px 4px #2196f322);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to   { opacity: 1; transform: translateX(-50%);}
+    }
+    .chatbot-input-area {
+      display:flex;align-items:center;gap:8px;
+      padding:11px 16px 14px 16px;
+      background: #f3f9ff;
+      border-radius:0 0 20px 20px;
+      box-shadow: 0 -2px 8px #2196f310;
+    }
+    .chatbot-input {
+      flex:1;
+      border-radius:9px;
+      border:1.6px solid #bbdefb;
+      padding:12px 13px;
+      font-size:1.06rem;
+      font-family:inherit;
+      background:#fff;
+      outline:none;
+      transition:border-color .17s;
+    }
+    .chatbot-input:focus { border-color:#1976d2;}
+    .chatbot-send-btn {
+      background:linear-gradient(90deg,#2196f3 70%,#0d47a1 100%);
+      color:#fff;
+      border:none;
+      border-radius:7px;
+      padding:11px 17px;
+      font-size:1.1rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:background .17s;
+      box-shadow:0 1px 7px #2196f322;
+    }
+    .chatbot-send-btn:active { transform: scale(.98);}
+    .chatbot-send-btn:hover { background:#1976d2; }
+    .quick-btns {
+      display:flex;gap:9px;margin:10px 0 0 0;flex-wrap:wrap;
+      animation: fadeMsg .4s;
+    }
+    .quick-btn {
+      background:#1976d2;
+      color:#fff;
+      border:none;
+      border-radius:7px;
+      padding:7px 12px;
+      font-size:.97rem;
+      cursor:pointer;
+      margin:2px 1px 0 0;
+      transition:background .13s;
+      font-weight:600;
+      outline:none;
+    }
+    .quick-btn:focus { outline:2px solid #1565c0;}
+    .quick-btn:hover { background:#0d47a1;}
+    a.pedido-wpp {
+      display:inline-block;margin:12px 0 0 0;
+      background:#25d366;color:#fff;font-weight:700;
+      padding:11px 22px;border-radius:9px;text-decoration:none;
+      font-size:1.09rem;transition:background .15s;
+      box-shadow:0 1px 10px #25d36622;
+      animation: fadeMsg .6s;
+    }
+    a.pedido-wpp:hover { background:#1ebe57;}
+    @media (max-width:500px) {
+      .chatbot-container{min-height:470px;}
+      .chatbot-header{font-size:1.00rem;}
+      .chatbot-cel-icon {display:none;}
+      .escassez-msg {font-size:.93rem; min-width: 110px; padding: 8px 6px;}
+      .chatbot-messages {max-height:320px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Ícones de celular decorativos (fora do chat) -->
+  <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Celular" class="chatbot-cel-icon icon1" />
+  <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Celular" class="chatbot-cel-icon icon2" />
+  <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Celular" class="chatbot-cel-icon icon3" />
+  <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Celular" class="chatbot-cel-icon icon4" />
+  <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Celular" class="chatbot-cel-icon icon5" />
+
+  <!-- Mensagem de escassez -->
+  <div id="escassezArea"></div>
+
+  <div class="chatbot-container" aria-label="ChatBot ISOLUTIONCELL">
+    <div class="chatbot-header">
+      <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Logo Celular">
+      <span>ISOLUTIONCELL ASSISTÊNCIA TÉCNICA</span>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages" aria-live="polite"></div>
+    <form class="chatbot-input-area" id="chatbotForm" autocomplete="off">
+      <input class="chatbot-input" id="chatInput" type="text" placeholder="Digite sua mensagem..." maxlength="120" autocomplete="off" aria-label="Digite sua mensagem" />
+      <button class="chatbot-send-btn" type="submit" aria-label="Enviar mensagem">Enviar</button>
+    </form>
+  </div>
+  <script>
+    // --- Configuração ---
+    const BOT_NAME = "ISOLUTIONCELL ASSISTÊNCIA TÉCNICA";
+    const WPP_NUMBER = "5561994326402"; // SEU NÚMERO
+    // Serviços disponíveis
+    const SERVICOS = [
+      {nome:"Troca de tela"},
+      {nome:"Troca de bateria"},
+      {nome:"Troca de conector de carga"},
+      {nome:"Troca de câmera"},
+      {nome:"Atualização de software"},
+      {nome:"Limpeza interna"}
+    ];
+    const MARCAS = ["Samsung","Apple","Motorola","Xiaomi","LG","Asus","Outra"];
+    // --- Estado do fluxo ---
+    let nomeCliente = "", etapa = "inicio", tempOrcamento = {marca:"",modelo:"",servico:"",desc:""};
+    let orcamentos = [];
+    // --- Escassez: nomes fake de clientes, sem repetir até esgotar lista ---
+    const NOMES_CLIENTES = [
+      "Lucas", "Ana", "Pedro", "Mariana", "Carlos", "Julia", "Gabriel", "Camila", "Rafael", "Larissa",
+      "Fernando", "Beatriz", "Felipe", "Amanda", "Thiago", "Isabela", "Rodrigo", "Bruna", "Gustavo", "Luiza",
+      "Matheus", "Patricia", "Vinicius", "Gabriela", "André", "Leticia", "Eduardo", "Fernanda", "Bruno", "Natália"
+    ];
+    let nomesUsados = [];
+
+    function sortearNomeEscassez() {
+      if (nomesUsados.length === NOMES_CLIENTES.length) nomesUsados = [];
+      let disponiveis = NOMES_CLIENTES.filter(n => !nomesUsados.includes(n));
+      let nome = disponiveis[Math.floor(Math.random()*disponiveis.length)];
+      nomesUsados.push(nome);
+      return nome;
+    }
+    // Exibe mensagem de escassez a cada 45s, fixa no canto inferior central
+    function msgEscassez() {
+      let nome = sortearNomeEscassez();
+      let area = document.getElementById("escassezArea");
+      let msgdiv = document.createElement("div");
+      msgdiv.className = "escassez-msg";
+      msgdiv.innerHTML = `
+        <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" class="cel-icon" alt="Celular">
+        <span><b>${nome}</b> acabou de solicitar um orçamento! 📱</span>
+      `;
+      area.innerHTML = "";
+      area.appendChild(msgdiv);
+      setTimeout(()=>{ if(area.contains(msgdiv)) area.removeChild(msgdiv); }, 6500);
+    }
+    setInterval(msgEscassez, 45000);
+    setTimeout(msgEscassez, 5000);
+
+    function addMsg(msg, author="bot", quicks=[]) {
+      const box = document.getElementById("chatbotMessages");
+      let el = document.createElement("div");
+      el.className = author==="bot" ? "msg-bot" : "msg-user";
+      el.innerHTML = msg;
+      box.appendChild(el);
+      if(author==="bot" && quicks.length) {
+        let q = document.createElement("div");
+        q.className = "quick-btns";
+        quicks.forEach(txt=>{
+          let btn=document.createElement("button");
+          btn.className="quick-btn";
+          btn.type="button";
+          btn.innerText=txt;
+          btn.onclick=()=>sendUserMsg(txt);
+          btn.tabIndex = 0;
+          q.appendChild(btn);
+        });
+        box.appendChild(q);
+      }
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function sendUserMsg(txt) {
+      if(!txt) return;
+      addMsg(txt, "user");
+      document.getElementById("chatInput").value = "";
+      setTimeout(()=>processInput(txt), 350);
+    }
+
+    function processInput(txt) {
+      txt = txt.trim();
+      // Nome do cliente
+      if(etapa==="inicio") {
+        let nome = txt.replace(/(meu nome é|sou|nome|oi|olá|bom dia|boa tarde|boa noite)/gi,"").trim();
+        if(nome.length>1 && nome.length<30 && /^[a-záéíóúãõç\s]+$/i.test(nome)) {
+          nomeCliente = nome.charAt(0).toUpperCase() + nome.slice(1);
+          etapa = "menu";
+          addMsg(`Oi, ${nomeCliente}! Seja bem-vindo(a) à <b>ISOLUTIONCELL ASSISTÊNCIA TÉCNICA</b> 📱<br>Como posso te ajudar hoje?`, "bot", ["Orçamento rápido","Ver serviços","Falar com atendente"]);
+          return;
+        }
+        addMsg("Qual seu nome? 😊", "bot");
+        return;
+      }
+
+      // Menu principal
+      if(etapa==="menu" && (txt.toLowerCase().includes("servico")||txt.toLowerCase().includes("serviço")||txt==="Ver serviços")) {
+        let msg = "<b>Nossos principais serviços:</b><br>";
+        SERVICOS.forEach(s => {
+          msg += `🔧 <b>${s.nome}</b><br>`;
+        });
+        addMsg(msg, "bot", ["Orçamento rápido","Falar com atendente"]);
+        return;
+      }
+
+      // Orçamento rápido
+      if(etapa==="menu" && (txt.toLowerCase().includes("orçamento")||txt.toLowerCase().includes("orcamento")||txt==="Orçamento rápido")) {
+        etapa = "marca_cel";
+        addMsg("Qual a marca do seu celular?", "bot", MARCAS);
+        return;
+      }
+      // Marca do celular
+      if(etapa==="marca_cel") {
+        let marca = MARCAS.find(m=>txt.toLowerCase().includes(m.toLowerCase())) || txt;
+        tempOrcamento = {marca:marca,modelo:"",servico:"",desc:""};
+        etapa = "modelo_cel";
+        addMsg("Qual o modelo? (Ex: Galaxy S21, iPhone 13, Redmi Note 11...)", "bot");
+        return;
+      }
+      // Modelo do celular
+      if(etapa==="modelo_cel") {
+        tempOrcamento.modelo = txt;
+        etapa = "problema_cel";
+        let quicks = SERVICOS.map(s=>s.nome);
+        addMsg("Qual serviço você precisa?", "bot", quicks);
+        return;
+      }
+      // Serviço/problema
+      if(etapa==="problema_cel") {
+        let servico = SERVICOS.find(s=>txt.toLowerCase().includes(s.nome.toLowerCase()));
+        if(servico) {
+          tempOrcamento.servico = servico.nome;
+          etapa = "descricao_cel";
+          addMsg("Se quiser, descreva melhor o problema (ou digite 'ok' para continuar):", "bot");
+        } else {
+          addMsg("Selecione ou digite um dos serviços listados.", "bot", SERVICOS.map(s=>s.nome));
+        }
+        return;
+      }
+      // Descrição opcional
+      if(etapa==="descricao_cel") {
+        tempOrcamento.desc = (txt.toLowerCase() === "ok" ? "" : txt);
+        etapa = "confirmar_orcamento";
+        let resumo = `<b>Resumo do seu orçamento:</b><br>`;
+        resumo += `Marca: <b>${tempOrcamento.marca}</b><br>`;
+        resumo += `Modelo: <b>${tempOrcamento.modelo}</b><br>`;
+        resumo += `Serviço: <b>${tempOrcamento.servico}</b><br>`;
+        if(tempOrcamento.desc) resumo += `Obs: ${tempOrcamento.desc}<br>`;
+        addMsg(resumo,"bot");
+        addMsg("Deseja solicitar este orçamento agora?","bot",["Solicitar pelo WhatsApp","Cancelar"]);
+        return;
+      }
+      // Orçamento - enviar para WhatsApp
+      if(etapa==="confirmar_orcamento") {
+        if(txt.toLowerCase().includes("whatsapp")||txt.toLowerCase().includes("solicitar")) {
+          let mensagem = `Olá! Meu nome é ${nomeCliente} e gostaria de um orçamento para:\nMarca: ${tempOrcamento.marca}\nModelo: ${tempOrcamento.modelo}\nServiço: ${tempOrcamento.servico}`;
+          if(tempOrcamento.desc) mensagem += `\nDetalhes: ${tempOrcamento.desc}`;
+          let url = `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(mensagem)}`;
+          addMsg(`<a href="${url}" target="_blank" class="pedido-wpp" rel="noopener noreferrer">Solicitar orçamento no WhatsApp</a>`,"bot");
+          orcamentos.push({...tempOrcamento});
+          etapa = "menu";
+        } else {
+          addMsg("Orçamento cancelado. Se quiser recomeçar, digite <b>orçamento</b>.", "bot");
+          etapa = "menu";
+        }
+        return;
+      }
+      // Falar com atendente
+      if(etapa==="menu" && (txt.toLowerCase().includes("atendente")||txt.toLowerCase().includes("suporte")||txt.toLowerCase().includes("falar"))) {
+        let url = `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent("Olá! Preciso de atendimento sobre assistência técnica de celular.")}`;
+        addMsg(`<a href="${url}" target="_blank" class="pedido-wpp" rel="noopener noreferrer">Falar com atendente no WhatsApp</a>`,"bot");
+        etapa = "menu";
+        return;
+      }
+      // Saudação genérica
+      if(txt.match(/oi|olá|boa\s?(noite|tarde|dia)/i)) {
+        addMsg("Olá! Qual seu nome? 😊", "bot");
+        etapa = "inicio";
+        return;
+      }
+      // Fallback
+      addMsg("Desculpe, não entendi! Você pode digitar <b>orçamento</b>, <b>ver serviços</b> ou <b>falar com atendente</b>.","bot",["Orçamento rápido","Ver serviços","Falar com atendente"]);
+    }
+
+    document.getElementById("chatbotForm").onsubmit = function(ev) {
+      ev.preventDefault();
+      let txt = document.getElementById("chatInput").value.trim();
+      if(!txt) return;
+      sendUserMsg(txt);
+    };
+
+    // Acessibilidade: permite enviar com Enter e navegar botões rápidos com Tab/Enter
+    document.getElementById("chatInput").addEventListener("keydown", function(ev){
+      if(ev.key === "Enter") {
+        ev.preventDefault();
+        document.querySelector(".chatbot-send-btn").click();
+      }
+    });
+
+    window.onload = ()=>{
+      addMsg(`<b>Olá! Eu sou o bot da ISOLUTIONCELL ASSISTÊNCIA TÉCNICA 📱</b><br>Qual seu nome?`);
+      document.getElementById("chatInput").focus();
+    };
+  </script>
+</body>
+</html>
